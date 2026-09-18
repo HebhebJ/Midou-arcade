@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-root="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Scores &middot; NEON ARCADE</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#127918;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="assets/css/arcade.css">
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/scores.js" defer></script>
+  <script src="assets/js/leaderboard.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="n1">NEON</span> <span class="n2">ARCADE</span></a>
+    <span class="spacer"></span>
+    <button class="btn" id="player-name" type="button" title="Change your arcade name">Set name</button>
+    <button class="btn icon" id="theme-toggle" type="button" aria-label="Switch theme">&#9728;</button>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1><span class="b">HIGH SCORES</span></h1>
+      <p>Saved in this browser only, so they survive a refresh but do not follow you to another device.</p>
+    </section>
+
+    <div id="boards"></div>
+
+    <div class="controls">
+      <a class="btn" href="index.html">&larr; Back to games</a>
+      <button class="btn" id="clear-all" type="button">Clear all scores</button>
+    </div>
+  </main>
+
+</body>
+</html>

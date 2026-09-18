@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-root="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NEON ARCADE</title>
+  <meta name="description" content="A small arcade of browser games. No installs, no accounts, just play.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#127918;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="assets/css/arcade.css">
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/scores.js" defer></script>
+  <script src="assets/js/hub.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="n1">NEON</span> <span class="n2">ARCADE</span></a>
+    <span class="spacer"></span>
+    <button class="btn" id="player-name" type="button" title="Change your arcade name">Set name</button>
+    <a class="btn" href="leaderboard.html">Scores</a>
+    <button class="btn icon" id="theme-toggle" type="button" aria-label="Switch theme">&#9728;</button>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1><span class="a">NEON</span> <span class="b">ARCADE</span></h1>
+      <p>Four games to start with. Nothing to install, works on your phone, and your best scores stay on this device.</p>
+    </section>
+
+    <h2 class="section-title">Pick a game</h2>
+    <div class="grid" id="game-grid">
+      <noscript><p style="color:var(--muted)">This arcade needs JavaScript switched on.</p></noscript>
+    </div>
+  </main>
+
+  <footer class="footer">
+    Built for fun &middot; more games landing soon
+  </footer>
+
+</body>
+</html>

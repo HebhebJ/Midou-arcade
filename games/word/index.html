@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Word Guess &middot; NEON ARCADE</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#128292;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="../../assets/css/arcade.css">
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/scores.js" defer></script>
+  <script src="game.js" defer></script>
+  <style>
+    .game-wrap { --accent: var(--neon-1); max-width: 480px; }
+
+    #grid { display: grid; grid-template-rows: repeat(6, 1fr); gap: 6px; }
+    .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .row.shake { animation: shake .35s; }
+
+    .box {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--line);
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: clamp(12px, 4.4vw, 20px);
+      color: var(--text);
+      background: transparent;
+      text-transform: uppercase;
+    }
+    .box.filled { border-color: var(--muted); animation: pop .12s ease-out; }
+    .box.correct { background: #1b7f3b; border-color: #1b7f3b; color: #fff; }
+    .box.present { background: #a8730a; border-color: #a8730a; color: #fff; }
+    .box.absent  { background: var(--surface-2); border-color: var(--surface-2); color: var(--muted); }
+
+    @keyframes pop { 0% { transform: scale(.85); } 100% { transform: scale(1); } }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    #keyboard { margin-top: 18px; display: flex; flex-direction: column; gap: 6px; }
+    .krow { display: flex; gap: 5px; justify-content: center; }
+    .key {
+      flex: 1;
+      min-width: 0;
+      min-height: 46px;
+      padding: 0 2px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .key.wide { flex: 1.6; font-size: 11px; }
+    .key:active { transform: translateY(1px); }
+    .key.correct { background: #1b7f3b; border-color: #1b7f3b; color: #fff; }
+    .key.present { background: #a8730a; border-color: #a8730a; color: #fff; }
+    .key.absent  { background: var(--bg); border-color: var(--line); color: var(--muted); opacity: .55; }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="../../index.html"><span class="n1">NEON</span> <span class="n2">ARCADE</span></a>
+    <span class="spacer"></span>
+    <button class="btn" id="player-name" type="button">Set name</button>
+    <button class="btn icon" id="theme-toggle" type="button" aria-label="Switch theme">&#9728;</button>
+  </header>
+
+  <main class="game-wrap">
+    <div class="game-head">
+      <h1>&#128292; WORD GUESS</h1>
+      <span class="hint">Keep solving to build your run &middot; one loss ends it</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="label">Run score</div><div class="value" id="score">0</div></div>
+      <div class="stat"><div class="label">Best</div><div class="value" id="best">0</div></div>
+      <div class="stat"><div class="label">Streak</div><div class="value" id="streak">0</div></div>
+    </div>
+
+    <div class="stage">
+      <div id="grid" aria-label="Guess grid"></div>
+
+      <div class="overlay" id="overlay" hidden>
+        <h2 id="over-title"></h2>
+        <p id="over-text"></p>
+        <button class="btn primary" id="over-btn" type="button">Next word</button>
+      </div>
+    </div>
+
+    <div id="keyboard"></div>
+
+    <div class="controls">
+      <button class="btn" id="giveup-btn" type="button">Give up</button>
+      <a class="btn" href="../../index.html">All games</a>
+    </div>
+
+    <h2 class="section-title" style="margin-top:28px">Top runs</h2>
+    <ol class="scorelist" id="scores"></ol>
+  </main>
+
+</body>
+</html>

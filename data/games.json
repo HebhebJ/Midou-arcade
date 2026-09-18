@@ -1,0 +1,46 @@
+[
+  {
+    "id": "snake",
+    "name": "SNAKE",
+    "emoji": "🐍",
+    "tag": "Arcade",
+    "players": "1 player",
+    "description": "Eat, grow longer, and never bite your own tail. Speeds up as you go.",
+    "path": "games/snake/",
+    "accent": "var(--neon-4)",
+    "scored": true
+  },
+  {
+    "id": "2048",
+    "name": "2048",
+    "emoji": "🔢",
+    "tag": "Puzzle",
+    "players": "1 player",
+    "description": "Slide the tiles, merge matching numbers, and hunt down the 2048 tile.",
+    "path": "games/2048/",
+    "accent": "var(--neon-3)",
+    "scored": true
+  },
+  {
+    "id": "word",
+    "name": "WORD GUESS",
+    "emoji": "🔤",
+    "tag": "Word",
+    "players": "1 player",
+    "description": "Six tries to crack a five-letter word. Green is right, yellow is close.",
+    "path": "games/word/",
+    "accent": "var(--neon-1)",
+    "scored": true
+  },
+  {
+    "id": "connect4",
+    "name": "CONNECT FOUR",
+    "emoji": "🔴",
+    "tag": "Versus",
+    "players": "2 players or vs CPU",
+    "description": "Drop your discs and line up four in a row. Share one screen or beat the CPU.",
+    "path": "games/connect4/",
+    "accent": "var(--neon-2)",
+    "scored": false
+  }
+]

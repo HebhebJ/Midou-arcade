@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Connect Four &middot; NEON ARCADE</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#128308;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="../../assets/css/arcade.css">
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/scores.js" defer></script>
+  <script src="game.js" defer></script>
+  <style>
+    .game-wrap { --accent: var(--neon-2); }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .slot {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--line);
+      cursor: pointer;
+      transition: background .12s, border-color .12s, transform .12s;
+    }
+    .slot.p1 { background: #ff2d95; border-color: #ff8ac4; }
+    .slot.p2 { background: #ffd60a; border-color: #ffe98a; }
+    .slot.drop { animation: drop .18s ease-out; }
+    .slot.win { transform: scale(1.06); box-shadow: 0 0 14px currentColor; border-color: var(--text); }
+    .slot.hint { border-color: var(--muted); }
+    .slot.full { cursor: default; }
+
+    @keyframes drop {
+      0%   { transform: translateY(-38%) scale(.85); opacity: .4; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .turn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .chip { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
+    .chip.p1 { background: #ff2d95; }
+    .chip.p2 { background: #ffd60a; }
+
+    .mode { display: flex; gap: 8px; margin-bottom: 14px; }
+    .mode button { flex: 1; }
+    .mode button[aria-pressed="true"] { border-color: var(--neon-2); color: var(--neon-2); }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="../../index.html"><span class="n1">NEON</span> <span class="n2">ARCADE</span></a>
+    <span class="spacer"></span>
+    <button class="btn" id="player-name" type="button">Set name</button>
+    <button class="btn icon" id="theme-toggle" type="button" aria-label="Switch theme">&#9728;</button>
+  </header>
+
+  <main class="game-wrap">
+    <div class="game-head">
+      <h1>&#128308; CONNECT FOUR</h1>
+      <span class="hint">Tap a column to drop a disc</span>
+    </div>
+
+    <div class="mode">
+      <button class="btn" id="mode-2p" type="button" aria-pressed="true">2 players</button>
+      <button class="btn" id="mode-cpu" type="button" aria-pressed="false">vs CPU</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="label" id="label-p1">Pink</div><div class="value" id="wins-p1">0</div></div>
+      <div class="stat"><div class="label">Draws</div><div class="value" id="draws">0</div></div>
+      <div class="stat"><div class="label" id="label-p2">Yellow</div><div class="value" id="wins-p2">0</div></div>
+    </div>
+
+    <div class="turn" id="turn">
+      <span class="chip p1"></span><span id="turn-text">Pink starts</span>
+    </div>
+
+    <div class="stage">
+      <div id="board" aria-label="Connect Four board"></div>
+
+      <div class="overlay" id="overlay" hidden>
+        <h2 id="over-title"></h2>
+        <p id="over-text"></p>
+        <button class="btn primary" id="over-btn" type="button">Play again</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="restart-btn" type="button">New round</button>
+      <button class="btn" id="reset-btn" type="button">Reset tally</button>
+      <a class="btn" href="../../index.html">All games</a>
+    </div>
+  </main>
+
+</body>
+</html>
