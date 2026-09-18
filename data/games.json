@@ -11,6 +11,17 @@
     "scored": true
   },
   {
+    "id": "tetris",
+    "name": "TETRIS",
+    "emoji": "🧩",
+    "tag": "Arcade",
+    "players": "1 player",
+    "description": "Stack the falling blocks, clear four rows at once, and survive the speed-up.",
+    "path": "games/tetris/",
+    "accent": "var(--neon-5)",
+    "scored": true
+  },
+  {
     "id": "2048",
     "name": "2048",
     "emoji": "🔢",

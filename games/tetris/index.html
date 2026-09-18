@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tetris &middot; NEON ARCADE</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>&#129513;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="../../assets/css/arcade.css">
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/scores.js" defer></script>
+  <script src="game.js" defer></script>
+  <style>
+    .game-wrap { --accent: var(--neon-5); max-width: 500px; }
+
+    .play {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    #board {
+      flex: 1 1 auto;
+      min-width: 0;
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      touch-action: none;
+    }
+
+    .side {
+      flex: 0 0 78px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .side .panel { text-align: center; }
+    .side .panel .label {
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .side canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .pad-extra {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .pad-extra button {
+      flex: 0 0 96px;
+      min-height: 46px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 1px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .pad-extra button:active { border-color: var(--neon-1); color: var(--neon-1); }
+
+    @media (hover: hover) and (pointer: fine) {
+      .pad-extra { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="../../index.html"><span class="n1">NEON</span> <span class="n2">ARCADE</span></a>
+    <span class="spacer"></span>
+    <button class="btn" id="player-name" type="button">Set name</button>
+    <button class="btn icon" id="theme-toggle" type="button" aria-label="Switch theme">&#9728;</button>
+  </header>
+
+  <main class="game-wrap">
+    <div class="game-head">
+      <h1>&#129513; TETRIS</h1>
+      <span class="hint">&larr;&rarr; move &middot; &uarr; rotate &middot; &darr; soft drop &middot; Space hard drop &middot; C hold</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="label">Score</div><div class="value" id="score">0</div></div>
+      <div class="stat"><div class="label">Best</div><div class="value" id="best">0</div></div>
+      <div class="stat"><div class="label">Level</div><div class="value" id="level">1</div></div>
+      <div class="stat"><div class="label">Lines</div><div class="value" id="lines">0</div></div>
+    </div>
+
+    <div class="stage">
+      <div class="play">
+        <canvas id="board" width="240" height="480" aria-label="Tetris board"></canvas>
+        <div class="side">
+          <div class="panel">
+            <div class="label">Next</div>
+            <canvas id="next" width="72" height="72"></canvas>
+          </div>
+          <div class="panel">
+            <div class="label">Hold</div>
+            <canvas id="hold" width="72" height="72"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="overlay">
+        <h2 id="over-title">READY?</h2>
+        <p id="over-text">Clear lines to score. Four at once is a Tetris.</p>
+        <button class="btn primary" id="over-btn" type="button">Start</button>
+      </div>
+    </div>
+
+    <div class="dpad">
+      <button class="up" data-act="rotate" type="button" aria-label="Rotate">&#8635;</button>
+      <button class="left" data-act="left" type="button" aria-label="Left">&#9664;</button>
+      <button class="down" data-act="down" type="button" aria-label="Soft drop">&#9660;</button>
+      <button class="right" data-act="right" type="button" aria-label="Right">&#9654;</button>
+    </div>
+    <div class="pad-extra">
+      <button data-act="drop" type="button">DROP</button>
+      <button data-act="hold" type="button">HOLD</button>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="pause-btn" type="button">Pause</button>
+      <button class="btn" id="restart-btn" type="button">Restart</button>
+      <a class="btn" href="../../index.html">All games</a>
+    </div>
+
+    <h2 class="section-title" style="margin-top:28px">Top scores</h2>
+    <ol class="scorelist" id="scores"></ol>
+  </main>
+
+</body>
+</html>

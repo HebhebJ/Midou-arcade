@@ -3,7 +3,7 @@
 A small arcade of browser games. Plain HTML, CSS and JavaScript — no framework,
 no build step, no dependencies. Every file you deploy is a file you can read.
 
-**Games so far:** Snake · 2048 · Word Guess · Connect Four
+**Games so far:** Snake · Tetris · 2048 · Word Guess · Connect Four
 
 ---
 
@@ -147,6 +147,7 @@ assets/
   js/leaderboard.js     scores page
 games/
   snake/                canvas, keyboard + swipe + on-screen d-pad
+  tetris/               seven-bag pieces, ghost, hold slot, lock delay
   2048/                 grid puzzle, swipe support
   word/                 five letters, six tries, run-based scoring
   connect4/             hot-seat two player, or a heuristic CPU
@@ -155,9 +156,9 @@ games/
 ## Design notes
 
 - Dark neon is the default theme; light is a toggle in the top bar, remembered.
-- Colours come from CSS custom properties on `:root` — change the four
+- Colours come from CSS custom properties on `:root` — change the five
   `--neon-*` values in `arcade.css` to restyle the whole arcade.
-- Every game works with touch: swipes plus a d-pad on Snake and 2048,
+- Every game works with touch: swipes plus a d-pad on Snake, Tetris and 2048,
   an on-screen keyboard on Word Guess, tap-a-column on Connect Four.
 - Headings use *Press Start 2P* from Google Fonts, falling back to the system
   monospace stack if it does not load.

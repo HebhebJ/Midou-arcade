@@ -16,6 +16,7 @@
   --neon-2: #ff2d95;
   --neon-3: #ffd60a;
   --neon-4: #39ff14;
+  --neon-5: #b46bff;
 
   --radius: 14px;
   --font-display: "Press Start 2P", "Courier New", monospace;
@@ -35,6 +36,7 @@ html[data-theme="light"] {
   --neon-2: #c2185b;
   --neon-3: #a8730a;
   --neon-4: #1b7f3b;
+  --neon-5: #7a3ec7;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
